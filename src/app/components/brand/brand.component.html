@@ -1,0 +1,16 @@
+<div *ngIf="dataLoaded == false" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="dataLoaded == true" class="table table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>MARKA</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let brand of brands">
+      <td>{{ brand.name }}</td>
+    </tr>
+  </tbody>
+</table>
