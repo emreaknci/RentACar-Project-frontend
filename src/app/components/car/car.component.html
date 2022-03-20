@@ -1,21 +1,61 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-info text-center m-5" role="status">
-    <span class="visually-hidden">Loading...</span>
+<div class="text-center container py-5" style="background-color: #eee">
+  <h4 class="mt-4 mb-5"><strong>KİRALIK ARAÇLAR</strong></h4>
+
+  <div class="row">
+    <div
+      *ngFor="let carDetail of cars"
+      class="col-lg-4 col-md-12 mb-4 text-reset"
+      [class]="getCurrentCarClass(carDetail)"
+      (click)="setCurrentCar(carDetail)"
+    >
+      <div class="card">
+        <div
+          class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+          data-mdb-ripple-color="light"
+        >
+          <img
+            *ngIf="carDetail.images[0] == null"
+            class="img-rounded w-100"
+            style="height: 200px"
+            src="{{ imagePath }}Images/default.png"
+          />
+          <img
+            *ngIf="carDetail.images[0] != null"
+            class="img-rounded w-100"
+            style="height: 200px"
+            src="{{ imagePath }}{{ carDetail.images[0] }}"
+          />
+          <div class="mask">
+            <div class="d-flex justify-content-start align-items-end h-100">
+              <h5><span class="badge bg-success ms-2">Eco</span></h5>
+            </div>
+          </div>
+          <div class="hover-overlay">
+            <div
+              class="mask"
+              style="background-color: rgba(251, 251, 251, 0.15)"
+            ></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="mb-3">
+            {{ carDetail.carDescription }}
+          </h5>
+          <a routerLink="/cars/brand/{{ carDetail.brandId }}" class="text-reset">
+            <p>Markanın diğer arabalarını gör</p>
+          </a>
+          <h6 class="mb-3">{{ carDetail.dailyPrice }} TL</h6>
+          <button
+          routerLink="/cars/cardetail/{{ carDetail.id }}"
+          [class]="getCurrentCarClass(carDetail)"
+            (click)="setCurrentCar(carDetail)"
+            class="btn btn-outline-dark"
+            type="button"
+          >
+            Incele
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  <table *ngIf="dataLoaded==true" class="table table-hover">
-    <thead>
-      <tr>
-        <th> Marka </th>
-        <th> Renk</th>
-        <th> Model Yili</th>
-        <th> Fiyat </th>
-        <th> Aciklama </th>
-      </tr>
-    </thead>
-    <tr *ngFor="let car of cars">
-      <td>{{car.brandId}} </td> 
-      <td>{{car.colorId}} </td> 
-      <td>{{car.modelYear}} </td> 
-      <td>{{car.dailyPrice}} </td>    
-      <td>{{car.description}} </td>    
-    </tr>
-  </table>
+</div>

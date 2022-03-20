@@ -1,6 +1,3 @@
-<div *ngIf="dataLoaded == false" class="spinner-border text-info" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
 <table *ngIf="dataLoaded == true" class="table table-hover">
   <thead class="table-dark">
     <tr>
@@ -9,7 +6,21 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let brand of brands">
+    <tr>
+      <td
+        (click)="setCurrentBrandEmpty()"
+        [class]="getAllBrandClass()"
+        routerLink="/cars"
+      >
+        MARKALAR
+      </td>
+    </tr>
+    <tr
+      *ngFor="let brand of brands"
+      [class]="getCurrentBrandClass(brand)"
+      (click)="setCurrentBrand(brand)"
+      routerLink="/cars/brand/{{ brand.id }}"
+    >
       <td>{{ brand.name }}</td>
     </tr>
   </tbody>

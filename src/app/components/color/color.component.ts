@@ -5,21 +5,36 @@ import { ColorService } from 'src/app/services/color.service';
 @Component({
   selector: 'app-color',
   templateUrl: './color.component.html',
-  styleUrls: ['./color.component.css']
+  styleUrls: ['./color.component.css'],
 })
 export class ColorComponent implements OnInit {
-  colors:Color[]= [];
+  colors: Color[] = [];
+  currentColor:Color | undefined;
   dataLoaded=false;
 
-  constructor(private colorService:ColorService) { }
+  constructor(private colorService: ColorService) {}
 
   ngOnInit(): void {
     this.getColors();
   }
 
-  getColors(){
-    this.colorService.getColors().subscribe((response)=>(
-      this.colors=response.data));
+  getColors() {
+    this.colorService.getColors().subscribe((response) => (
+      this.colors = response.data));
       this.dataLoaded=true;
+  }
+  setCurrentColor(color:Color){
+    this.currentColor=color;
+  }
+  getCurrentColorClass(color:Color){
+    if(color==this.currentColor) return "table-active";
+    else return "";
+  }
+  getAllColorClass(){
+    if(!this.currentColor) return "table-active";
+    else return "";
+  }
+  setCurrentColorEmpty(){
+    this.currentColor=undefined;
   }
 }
