@@ -1,0 +1,47 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Marka Bilgilerini Düzenle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="brandUpdateForm">
+          <div class="form-group row py-2" hidden>
+            <label for="name" class="col-sm-2 col-form-label">Marka Id</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                id="id"
+                [value]="brand.id"
+                formControlName="id"
+                class="form-control"
+                placeholder="Marka Id"
+              />
+            </div>
+          </div>
+          <div class="form-group row py-2">
+            <label for="name" class="col-sm-2 col-form-label">Marka Adı</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                id="name"
+                [value]="brand.name"
+                formControlName="name"
+                class="form-control"
+                placeholder="Marka adı"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-warning mx-2" (click)="update()">
+          Düzenle
+        </button>
+        <button class="btn btn-fill btn-danger mx-2" (click)="delete()">
+          Sil
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

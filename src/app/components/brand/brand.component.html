@@ -22,12 +22,14 @@
       *ngFor="let brand of brands | filterBrand: filterText"
       [class]="getCurrentBrandClass(brand)"
       (click)="setCurrentBrand(brand)"
-      routerLink="/cars/brand/{{ brand.id }}"
     >
-      {{ brand.name }}
+      <span routerLink="/cars/brand/{{ brand.id }}"> {{ brand.name }} </span>
+      <span class="badge bg-warning" routerLink="/brand/update/{{ brand.id }}">
+        Düzenle
+      </span>
     </li>
-  </ul> 
-<!--
+  </ul>
+  <!--
   <form [formGroup]="brandForm" (ngSubmit)="submit()">
     <select
       formControlName="brand"
@@ -79,6 +81,4 @@
         {{brand.name}}</li>
     </ul>
   -->
-</div> 
-
-  
+</div>

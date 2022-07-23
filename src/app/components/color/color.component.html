@@ -55,10 +55,11 @@
       *ngFor="let color of colors | filterBrand: filterText"
       [class]="getCurrentColorClass(color)"
       (click)="setCurrentColor(color)"
-      routerLink="/cars/color/{{ color.id }}"
     >
-      {{ color.name }}
-    </li>
+    <span routerLink="/cars/color/{{ color.id }}"> {{ color.name }} </span>
+    <span class="badge bg-warning" routerLink="/color/update/{{ color.id }}">
+      Düzenle
+    </span>    </li>
   </ul>
   
  

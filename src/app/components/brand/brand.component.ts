@@ -14,14 +14,11 @@ export class BrandComponent implements OnInit {
   dataLoaded = false;
   filterText = '';
 
-  brandForm: FormGroup;
   brand:Brand
   constructor(private brandService: BrandService,private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
-    this.brandForm  = this.formBuilder.group({
-      brand:[null]
-    });
+
     this.getBrands();
   }
 
@@ -60,10 +57,5 @@ export class BrandComponent implements OnInit {
     else{
       return false
     }
-  }
-  submit() {
-    console.log("Form Submitted")
-    this.currentBrand=this.brandForm.value
-    console.log(this.brandForm.value)
   }
 }

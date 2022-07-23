@@ -22,6 +22,10 @@ import { CartSummaryComponent } from './components/cart-summary/cart-summary.com
 import { CarSelectOptionComponent } from './components/car-select-option/car-select-option.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CartDetailComponent } from './components/cart-detail/cart-detail.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
+import { ColorUpdateComponent } from './components/color-update/color-update.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,10 @@ import { CartDetailComponent } from './components/cart-detail/cart-detail.compon
     CarSelectOptionComponent,
     PaymentComponent,
     CartDetailComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    BrandUpdateComponent,
+    ColorUpdateComponent,
   ],
   imports: [
     BrowserModule,
