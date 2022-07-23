@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", "Ubuntu", "Roboto", "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+.container {
+  background-color: #f3f3f3;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f3;
+}
+.card-container {
+  box-shadow: 2px 2px 7px 2px #737373;
+  width: 650px;
+  height: 422px;
+  display: flex;
+}
+.left,
+.right {
+  padding: 20px;
+  flex: 1;
+}
+.left {
+  background-color: #fff;
+}
+.right {
+  background-color: #2e367b;
+  color: #fff;
+}
+.left > h1 {
+  text-align: center;
+  color: #828282;
+  font-weight: lighter;
+}
+.left > span {
+  display: block;
+  width: 80px;
+  height: 2px;
+  background-color: #d3d3d3;
+  margin: 10px auto;
+}
+.order-items {
+  height: 80px;
+  border-bottom: 1px solid #d3d3d3;
+  padding: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.order-items img {
+  width: 50px;
+  height: 50px;
+}
+.order-items .item {
+  display: flex;
+  flex-direction: column;
+  color: #81838a;
+  width: 50%;
+}
+.item-price {
+  font-size: 25px;
+  color: #2e367b;
+  font-weight: 400;
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+.total .price {
+  font-size: 30px;
+  font-weight: bold;
+  color: #2e367b;
+}
+.total > h2 {
+  font-size: 28px;
+  font-weight: lighter;
+  color: #828282;
+}
+.right > h1 {
+  text-align: center;
+  font-weight: lighter;
+}
+.right > span {
+  display: block;
+  width: 80px;
+  height: 2px;
+  background-color: #ffffffd9;
+  margin: 10px auto;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  background-color: #f3f3f3;
+  outline: none;
+  border-radius: 2px;
+  margin: 9px 0;
+}
+.payment-section > input {
+  padding-left: 32px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png);
+  background-size: 16px 17px;
+  background-repeat: no-repeat;
+  background-position: 8px 1rem;
+  padding-top: 14px;
+}
+.marginright {
+  margin-right: 15px;
+}
+.flex {
+  display: flex;
+}
+.submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.submit button {
+  background-color: #f79e24;
+  color: #fff;
+  padding: 10px;
+  width: 100px;
+  border-radius: 2px;
+  font-size: 16px;
+  font-weight: lighter;
+  cursor: pointer;
+}
+.submit button:hover {
+  opacity: 0.8;
+}

@@ -6,7 +6,7 @@ export interface CarDetail{
     colorId:number;
     brandName:string;
     colorName:string;
-    dailyPrice:DecimalPipe;
+    dailyPrice:number;
     modelYear:number;
     carDescription:string;
     images:string[];

@@ -8,22 +8,18 @@
 <table *ngIf="dataLoaded != false" class="table table-hover">
   <thead class="table-dark">
     <tr>
-      <th>Id</th>
-      <th>MarkaId</th>
-      <th>CustomerId</th>
+      <th>Müşteri</th>
+      <th>Marka</th>
       <th>Kiralama Tarihi</th>
-      <th>Donus Tarihi</th>
+      <th>Dönüş Tarihi</th>
     </tr>
   </thead>
   <tbody>
-    <tr
-      *ngFor="let rental of rentals"
-    >
-      <td>{{ rental.id }}</td>
-      <td>{{ rental.carId }}</td>
-      <td>{{ rental.customerId }}</td>
-      <td>{{ rental.rentDate }}</td>
-      <td>{{ rental.returnDate }}</td>
+    <tr *ngFor="let rental of rentals">
+      <td>{{ rental.customerName }}</td>
+      <td>{{ rental.brandName }}</td>
+      <td>{{ rental.rentDate | date }}</td>
+      <td>{{ rental.returnDate | date }}</td>
     </tr>
   </tbody>
 </table>

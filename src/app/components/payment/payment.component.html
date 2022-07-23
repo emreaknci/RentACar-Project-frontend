@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="card-container">
+    <div class="left">
+      <h1>Seçtiklerin</h1>
+      <span></span>
+      <div class="order-items" *ngFor="let item of cartItems">
+        <img
+          *ngIf="item.carDetail.images[0] == null"
+          src="{{ imagePath }}Images/default.png"
+        />
+        <img
+          *ngIf="item.carDetail.images[0] != null"
+          src="{{ imagePath }}{{ item.carDetail.images[0] }}"
+        />
+        <div class="item">
+          <span>{{ item.carDetail.carDescription }}</span>
+          <span>Süre: {{ item.leaseTerm }} Gün</span>
+        </div>
+        <h6 class="item-price">{{ item.leaseCost }} ₺</h6>
+      </div>
+
+      <div class="total">
+        <h2>Toplam</h2>
+        <span class="price">{{ totalprice }} ₺</span>
+      </div>
+    </div>
+    <div class="right bg-primary">
+      <h1>Kart Bilgileri</h1>
+      <span></span>
+      <div class="form-container">
+        <form [formGroup]="paymentForm">
+          <div class="payment-section">
+            <label for="cardNumber">Kart Numarası</label>
+            <input
+              type="text"
+              formControlName="cardNumber"
+            />
+          </div>
+          <div class="input-items flex">
+            <div class="marginright">
+              <label for="fullName">Kart Üzerindeki Ad</label>
+              <input
+                type="text"
+                id="fullName"
+              />
+            </div>
+          </div>
+          <div class="input-items flex">
+            <div>
+              <label for="expDate">Son Kullanma Tarihi</label>
+              <div class="flex marginright">
+                <span class="marginright">
+                  <input
+                    type="month"
+                    formControlName="expDate"
+                    placeholder="MM"
+                  />
+                </span>
+              </div>
+            </div>
+            <div>
+              <label for="cvv">CVV</label>
+              <input
+                type="text"
+                formControlName="cvv"
+                placeholder="000"
+              />
+            </div>
+          </div>
+        </form>
+
+        <div class="submit">
+          <button
+            (click)="getCreditCardByCardNumber()"
+          >
+            Öde
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

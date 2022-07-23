@@ -3,18 +3,19 @@
 
   <div class="container">
     <div class="row mt-4">
-      <div class="col-md-2">
+      <div class="col-lg-2">
+        <app-car-select-option></app-car-select-option>
         <app-brand></app-brand>
         <app-color></app-color>
 
       </div>
-      <div class="col-md">
+      <div class="col-lg ">
         <router-outlet></router-outlet>
       </div>
     </div>  
     <div class="row mt-4">
       <div class="col-md-5"><app-customer></app-customer></div>
-      <div class="col-md"><app-rental></app-rental></div>
+      <div class="col-md"><app-rental-detail></app-rental-detail></div>
     </div>
   </div>
 

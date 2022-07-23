@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-brand',
@@ -11,9 +12,16 @@ export class BrandComponent implements OnInit {
   brands: Brand[] = [];
   currentBrand: Brand | undefined;
   dataLoaded = false;
-  constructor(private brandService: BrandService) {}
+  filterText = '';
+
+  brandForm: FormGroup;
+  brand:Brand
+  constructor(private brandService: BrandService,private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.brandForm  = this.formBuilder.group({
+      brand:[null]
+    });
     this.getBrands();
   }
 
@@ -23,18 +31,39 @@ export class BrandComponent implements OnInit {
       .subscribe((response) => (this.brands = response.data));
     this.dataLoaded = true;
   }
+
+
   setCurrentBrand(brand: Brand) {
     this.currentBrand = brand;
   }
+
+
   getCurrentBrandClass(brand: Brand) {
-    if (brand == this.currentBrand) return 'table-active';
-    else return '';
+    if (brand == this.currentBrand) return 'list-group-item active';
+    else return 'list-group-item';
   }
+
+
   getAllBrandClass() {
-    if (!this.currentBrand) return 'table-active';
-    else return '';
+    if (!this.currentBrand) return 'list-group-item active';
+    else return 'list-group-item';
   }
+
+
   setCurrentBrandEmpty() {
     this.currentBrand = undefined;
+  }
+  getSelectedBrand(brandName:string){
+    if (this.filterText==brandName) {
+      return true
+    }
+    else{
+      return false
+    }
+  }
+  submit() {
+    console.log("Form Submitted")
+    this.currentBrand=this.brandForm.value
+    console.log(this.brandForm.value)
   }
 }

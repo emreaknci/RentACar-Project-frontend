@@ -12,14 +12,40 @@
       <p class="text-right para">Puan</p>
     </div>
   </div>
-  <div class="container-body mt-4">
+  <div class="container-body mt-4" *ngIf="dataLoaded">
     <div class="row r3">
       <div class="col-md-5 p-0 klo" *ngFor="let currentCar of currentCars">
         <ul>
           <li><strong>MARKA: </strong> {{ currentCar.brandName }}</li>
           <li><strong>RENK: </strong>{{ currentCar.colorName }}</li>
           <li><strong>MODEL: </strong>{{ currentCar.modelYear }}</li>
-          <li><strong>GÜNLÜK FİYAT: </strong>{{ currentCar.dailyPrice }} TL</li>
+          <li><strong>GÜNLÜK FİYAT: </strong>{{ currentCar.dailyPrice }} ₺</li>
+          <li *ngIf="isrentable">
+            <strong>KİRALAMA TARİHİ: </strong> <br />
+            <input [(ngModel)]="rentDate" id="rentDate" type="date" />
+          </li>
+          <li *ngIf="isrentable">
+            <strong>DÖNÜŞ TARİHİ: </strong> <br />
+            <input [(ngModel)]="returnDate" type="date" id="returnDate" />
+          </li>
+          <li>
+            <button
+              (click)="addToCart(currentCar)"
+              type="button"
+              *ngIf="isrentable"
+              class="btn btn-success"
+            >
+              Sepete Ekle
+            </button>
+            <button
+              type="button"
+              *ngIf="!isrentable"
+              disabled
+              class="btn btn-danger"
+            >
+              Kiralanmış
+            </button>
+          </li>
         </ul>
       </div>
       <div
@@ -65,19 +91,10 @@
     </div>
   </div>
 </div>
+
 <div class="footer d-flex flex-column mt-5">
   <div class="row r4">
-    <div class="col-md-2 myt des"><a href="#">Description</a></div>
-    <div class="col-md-2 myt"><a href="#">Review</a></div>
-    <div class="col-md-2 mio offset-md-4"><a href="#">ADD TO CART</a></div>
-    <div class="col-md-2 myt">
-      <button type="button" class="btn btn-outline-success">
-        <a href="#">KİRALA</a>
-      </button>
-    </div>
+    <div class="col-md-2 myt des">Description</div>
+    <div class="col-md-2 myt">Review</div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-8"></div>
 </div>

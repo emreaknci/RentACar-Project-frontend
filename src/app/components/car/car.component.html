@@ -1,10 +1,42 @@
-<div class="text-center container py-5" style="background-color: #eee">
-  <h4 class="mt-4 mb-5"><strong>KİRALIK ARAÇLAR</strong></h4>
 
+
+<div class="mb-3">
+  <label for="filterText" class="form-label"
+    ><h5>İlan başlığına göre ara</h5>
+  </label>
+
+  <input
+    type="search"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="Arama ifadesi giriniz..."
+  />
+</div>
+
+<div class="text-center container py-5" style="background-color: #eee;min-height: 50%">
+  <h4
+    *ngIf="!filterText && !currentSelectOption"
+    class="mt-4 mb-5 text-uppercase"
+  >
+    <strong lang="tr">tüm kiralık araçlar</strong>
+  </h4>
+  <h4 *ngIf="filterText" class="mt-4 mb-5 text-uppercase">
+    <strong lang="tr"
+      >"{{ filterText | uppercase }}" ifadesine göre ilanlar</strong
+    >
+  </h4>
+  <h4
+    *ngIf="currentSelectOption && !filterText"
+    class="mt-4 mb-5 text-uppercase"
+  >
+    <strong lang="tr">{{ currentSelectOption.name }} </strong>
+  </h4>
   <div class="row">
+
     <div
-      *ngFor="let carDetail of cars"
-      class="col-lg-4 col-md-12 mb-4 text-reset"
+      *ngFor="let carDetail of carDetails | filterCarDescription: filterText"
+      class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4 text-reset clearfix"
       [class]="getCurrentCarClass(carDetail)"
       (click)="setCurrentCar(carDetail)"
     >
@@ -27,7 +59,25 @@
           />
           <div class="mask">
             <div class="d-flex justify-content-start align-items-end h-100">
-              <h5><span class="badge bg-success ms-2">Eco</span></h5>
+              <h5>
+                <span
+                  *ngIf="carDetail.dailyPrice <= 500"
+                  class="badge bg-success ms-2"
+                  >Ekonomik</span
+                >
+                <span
+                  *ngIf="
+                    carDetail.dailyPrice > 500 && carDetail.dailyPrice <= 1300
+                  "
+                  class="badge bg-warning ms-2"
+                  >Orta Segment</span
+                >
+                <span
+                  *ngIf="carDetail.dailyPrice > 1300"
+                  class="badge bg-danger ms-2"
+                  >Lüks</span
+                >
+              </h5>
             </div>
           </div>
           <div class="hover-overlay">
@@ -38,22 +88,40 @@
           </div>
         </div>
         <div class="card-body">
-          <h5 class="mb-3">
-            {{ carDetail.carDescription }}
+          <h5 lang="tr" class="mb-3">
+            {{ carDetail.carDescription | uppercase }}
           </h5>
-          <a routerLink="/cars/brand/{{ carDetail.brandId }}" class="text-reset">
+          <a
+            routerLink="/cars/brand/{{ carDetail.brandId }}"
+            class="text-reset"
+          >
             <p>Markanın diğer arabalarını gör</p>
           </a>
           <h6 class="mb-3">{{ carDetail.dailyPrice }} TL</h6>
-          <button
-          routerLink="/cars/cardetail/{{ carDetail.id }}"
-          [class]="getCurrentCarClass(carDetail)"
-            (click)="setCurrentCar(carDetail)"
-            class="btn btn-outline-dark"
-            type="button"
-          >
-            Incele
-          </button>
+
+          <div class="row">
+            <div class="col">
+              <button
+                routerLink="/cars/cardetail/{{ carDetail.id }}"
+                [class]="getCurrentCarClass(carDetail)"
+                (click)="setCurrentCar(carDetail)"
+                class="btn btn-dark"
+                type="button"
+              >
+                İncele
+              </button>
+            </div>
+            <!-- <div class="col-2"></div>
+            <div class="col">
+              <button
+                (click)="addToCart(carDetail)"
+                type="button"
+                class="btn btn-success"
+              >
+                KİRALA
+              </button>
+            </div> -->
+          </div>
         </div>
       </div>
     </div>

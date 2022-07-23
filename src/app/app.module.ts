@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +13,15 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { RentalComponent } from './components/rental/rental.component';
-import { HttpClientModule } from '@angular/common/http';
+import { FilterBrandPipe } from './pipes/filter-brand.pipe';
+import { FilterColorPipe } from './pipes/filter-color.pipe';
+import { FilterCarDescriptionPipe } from './pipes/filter-car-description.pipe';
+import { RentalDetailComponent } from './components/rental-detail/rental-detail.component';
+import { ToastrModule } from 'ngx-toastr';
+import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
+import { CarSelectOptionComponent } from './components/car-select-option/car-select-option.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { CartDetailComponent } from './components/cart-detail/cart-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,15 +32,28 @@ import { HttpClientModule } from '@angular/common/http';
     CustomerComponent,
     CarDetailComponent,
     NaviComponent,
-    RentalComponent
+    RentalComponent,
+    FilterBrandPipe,
+    FilterColorPipe,
+    FilterCarDescriptionPipe,
+    RentalDetailComponent,
+    CartSummaryComponent,
+    CarSelectOptionComponent,
+    PaymentComponent,
+    CartDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
