@@ -1,0 +1,91 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Araba Ekle</h5></div>
+      <div class="card-body">
+        <form [formGroup]="carAddForm">
+          <div class="form-group row py-2">
+            <label for="description" class="col-sm-2 col-form-label"
+              >İlan Açıklaması</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                id="description"
+                formControlName="description"
+                class="form-control"
+                placeholder="Açıklama"
+                required="Bu alan boş geçilemez"
+              />
+            </div>
+          </div>
+          <div class="form-group row py-2">
+            <label for="brandId" class="col-sm-2 col-form-label">Marka</label>
+            <div class="col-sm-10">
+              <select
+                formControlName="brandId"
+                name="brands"
+                id="brands"
+                class="form-control"
+              >
+                <option *ngFor="let brand of brands" value="{{ brand.id }}">
+                  {{ brand.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row py-2">
+            <label for="colorId" class="col-sm-2 col-form-label">Renk</label>
+            <div class="col-sm-10">
+              <select
+                formControlName="colorId"
+                name="colors"
+                id="colors"
+                class="form-control"
+              >
+                <option *ngFor="let color of colors" value="{{ color.id }}">
+                  {{ color.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row py-2">
+            <label for="modelYear" class="col-sm-2 col-form-label"
+              >Model Yılı</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                id="modelYear"
+                formControlName="modelYear"
+                class="form-control"
+                placeholder="Model Yılı"
+                required="Bu alan boş geçilemez"
+              />
+            </div>
+          </div>
+          <div class="form-group row py-2">
+            <label for="dailyPrice" class="col-sm-2 col-form-label"
+              >Günlük Fiyat</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                id="dailyPrice"
+                formControlName="dailyPrice"
+                class="form-control"
+                placeholder="Günlük Fiyat"
+                required="Bu alan boş geçilemez"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-success" type="submit" (click)="add()">
+          Ekle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

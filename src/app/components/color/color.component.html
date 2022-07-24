@@ -1,33 +1,3 @@
-<!--
-<table *ngIf="dataLoaded == true" class="table table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th>RENK</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td
-        (click)="setCurrentColorEmpty()"
-        [class]="getAllColorClass()"
-        routerLink="/cars"
-      >
-        TÜM RENKLER
-      </td>
-    </tr>
-    <tr
-      *ngFor="let color of colors"
-      [class]="getCurrentColorClass(color)"
-      (click)="setCurrentColor(color)"
-      routerLink="/cars/color/{{color.id}}"
-    >
-      <td>{{ color.name }}</td>
-    </tr>
-  </tbody>
-</table>
--->
-
 <div class="container p-0 py-5" >
   <h4>RENK</h4>
   <div >
@@ -57,7 +27,7 @@
       (click)="setCurrentColor(color)"
     >
     <span routerLink="/cars/color/{{ color.id }}"> {{ color.name }} </span>
-    <span class="badge bg-warning" routerLink="/color/update/{{ color.id }}">
+    <span class="badge bg-warning" routerLink="/colors/update/{{ color.id }}">
       Düzenle
     </span>    </li>
   </ul>
