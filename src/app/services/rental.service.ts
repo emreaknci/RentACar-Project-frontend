@@ -6,8 +6,8 @@ import ListReponseModel from '../models/listResponseModel';
 import { Rental } from '../models/rental';
 import { RentalAddModel } from '../models/rental-add';
 import { ResponseModel } from '../models/responseModel';
-import ResponseModel2 from '../models/itemResponseModel';
-import ItemResponseModel from '../models/itemResponseModel';
+import ResponseModel2 from '../models/singleResponseModel';
+import SingleResponseModel from '../models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -31,8 +31,8 @@ export class RentalService {
     return this.httpClient.post<ResponseModel>(newPath, rentalModel);
   }
 
-  isRentable(id: number): Observable<ItemResponseModel<Rental>> {
+  isRentable(id: number): Observable<SingleResponseModel<Rental>> {
     let newPath = this.apiUrl + 'isrentable?carId=' + id;
-    return this.httpClient.get<ItemResponseModel<Rental>>(newPath);
+    return this.httpClient.get<SingleResponseModel<Rental>>(newPath);
   }
 }

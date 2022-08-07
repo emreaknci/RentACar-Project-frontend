@@ -12,6 +12,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { RentalAddModel } from 'src/app/models/rental-add';
+import { CustomerService } from 'src/app/services/customer.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -23,10 +25,13 @@ export class PaymentComponent implements OnInit {
     private paymentService: PaymentService,
     private rentalService: RentalService,
     private toastrService: ToastrService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private customerService: CustomerService,
+    private localStorageService: LocalStorageService,
   ) {}
   paymentForm: FormGroup;
   imagePath: string = 'https://localhost:44342/';
+
   cartItems: CartItem[] = [];
   rentals: RentalAddModel[] = [];
   totalprice: any;
@@ -34,10 +39,10 @@ export class PaymentComponent implements OnInit {
   cardNumber: string;
 
   ngOnInit(): void {
+    this.getCustomerId();
     this.createPaymentForm();
     this.getCartItems();
     this.totalPrice();
-    this.getRentalsDetail();
   }
 
   createPaymentForm() {
@@ -55,14 +60,15 @@ export class PaymentComponent implements OnInit {
     this.totalprice = this.cartService.totalPrice();
     return this.totalprice;
   }
-  getRentalsDetail() {
+  getRentalsDetail(customerId:number) {
     for (let i = 0; i < this.getCartItems().length; i++) {
       this.rentals[i] = {
         carId: this.getCartItems()[i].carDetail.id,
-        customerId: 2,
+        customerId: customerId,
         rentDate: this.getCartItems()[i].rentDate,
         returnDate: this.getCartItems()[i].returnDate,
       };
+      console.log(this.rentals[i]);
     }
     return this.rentals;
   }
@@ -114,5 +120,13 @@ export class PaymentComponent implements OnInit {
     } else {
       this.toastrService.error('Lütfen formu tamamen doldurunuz!', 'Hata!');
     }
+  }
+
+  getCustomerId() {
+    this.customerService
+      .getCustomerInfo(this.localStorageService.decodeToken().email)
+      .subscribe((response) => {
+        this.getRentalsDetail(response.data.id);
+      });
   }
 }

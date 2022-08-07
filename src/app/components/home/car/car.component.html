@@ -1,0 +1,137 @@
+<div
+  class="text-center container py-5 p-0"
+
+>
+  <div class="mb-3">
+    <label for="filterText" class="form-label"
+      ><h5>İlan başlığına göre ara</h5>
+    </label>
+
+    <input
+      type="search"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="Arama ifadesi giriniz..."
+    />
+  </div>
+  <div class="form-group row py-2 d-flex justify-content-end">
+    <div class="col-lg-3">
+      <select
+        id="sortByOption"
+        class="form-control"
+        (change)="changeOption($event.target)"
+      >
+        <option value="" selected disabled hidden>Sırala</option>
+        <option
+          *ngFor="let option of sortSelectOptions"
+          value="{{ option.id }}"
+        >
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <h4 *ngIf="!filterText" class="mt-4 mb-5 text-uppercase">
+    <strong lang="tr">tüm kiralık araçlar</strong>
+  </h4>
+  <h4 *ngIf="filterText" class="mt-4 mb-5 text-uppercase">
+    <strong lang="tr"
+      >"{{ filterText | uppercase }}" ifadesine göre ilanlar</strong
+    >
+  </h4>
+
+  <div class="row">
+    <div
+      *ngFor="
+        let carDetail of carDetails
+          | filterCarDescription: filterText
+          | paginate: { itemsPerPage: 6, currentPage: pageNumber }
+      "
+      class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4 text-reset clearfix"
+      [class]="getCurrentCarClass(carDetail)"
+      (click)="setCurrentCar(carDetail)"
+    >
+      <div class="card">
+        <div
+          class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+          data-mdb-ripple-color="light"
+        >
+          <!-- <img
+            *ngIf="carDetail.images[0] == null"
+            class="img-rounded w-100"
+            style="height: 200px"
+            src="{{ imagePath }}Images/default.png"
+          /> -->
+          <img
+            *ngIf="carDetail.images[0] != null"
+            class="img-rounded w-100"
+            style="height: 200px"
+            src="{{ imagePath }}{{ carDetail.images[0] }}"
+          />
+          <div class="mask mt-3">
+            <div class="d-flex justify-content-start align-items-end h-100">
+              <h5>
+                <span
+                  *ngIf="carDetail.dailyPrice <= 300"
+                  class="badge bg-success ms-2"
+                  >Ekonomik</span
+                >
+                <span
+                  *ngIf="
+                    carDetail.dailyPrice > 300 && carDetail.dailyPrice <= 1000
+                  "
+                  class="badge bg-warning ms-2"
+                  >Orta Segment</span
+                >
+                <span
+                  *ngIf="carDetail.dailyPrice > 1000"
+                  class="badge bg-danger ms-2"
+                  >Lüks</span
+                >
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 lang="tr" style="min-height: 6rem" class="my-3">
+            {{ carDetail.carDescription | uppercase }}
+          </h5>
+          <a
+            routerLink="/home/cars/brand/{{ carDetail.brandId }}"
+            class="text-reset"
+          >
+            <p>Markanın diğer arabalarını gör</p>
+          </a>
+          <h6 class="mb-3">{{ carDetail.dailyPrice }} TL</h6>
+
+          <div class="row">
+            <div class="col">
+              <button
+                routerLink="/home/cars/cardetail/{{ carDetail.id }}"
+                [class]="getCurrentCarClass(carDetail)"
+                (click)="setCurrentCar(carDetail)"
+                class="btn btn-primary"
+                type="button"
+              >
+                İncele
+              </button>
+            </div>
+            <div class="col">
+              <button
+                routerLink="/home/cars/update/{{ carDetail.id }}"
+                type="button"
+                class="btn btn-warning"
+              >
+                Düzenle
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls
+    (pageChange)="pageChangeEvent($event)"
+  ></pagination-controls>
+</div>

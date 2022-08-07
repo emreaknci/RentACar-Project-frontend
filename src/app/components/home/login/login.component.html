@@ -1,0 +1,62 @@
+<button
+  type="button"
+  class="btn btn-outline-warning mx-1"
+  data-bs-toggle="modal"
+  data-bs-target="#loginPopup"
+>
+<i>Giriş Yap</i></button>
+
+<!-- Login Popup -->
+<div
+  class="modal fade"
+  id="loginPopup"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Giriş Yap</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <main class="form-signin w-100 m-auto">
+          <form [formGroup]="loginForm">
+            <div class="form-floating my-3">
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+              />
+              <label for="floatingInput">Mail</label>
+            </div>
+            <div class="form-floating my-3">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+              />
+              <label for="floatingPassword">Şifre</label>
+            </div>
+
+            <div class="checkbox my-3">
+              <label>
+                <input type="checkbox" value="remember-me" /> Beni Hatırla
+              </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" (click)="login()">
+              Giriş Yap
+            </button>
+            <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p> -->
+          </form>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>

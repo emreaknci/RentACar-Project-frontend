@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Color } from '../models/color';
-import ItemResponseModel from '../models/itemResponseModel';
+import SingleResponseModel from '../models/singleResponseModel';
 import ListReponseModel from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
 
@@ -31,8 +31,8 @@ export class ColorService {
     let newPath = this.apiUrl + 'delete';
     return this.httpClient.post<ResponseModel>(newPath,color);
   }
-  getById(id: number): Observable<ItemResponseModel<Color>> {
+  getById(id: number): Observable<SingleResponseModel<Color>> {
     let newPath = this.apiUrl + 'getbyid?id=' + id;
-    return this.httpClient.get<ItemResponseModel<Color>>(newPath);
+    return this.httpClient.get<SingleResponseModel<Color>>(newPath);
   }
 }

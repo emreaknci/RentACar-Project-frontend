@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home/cars/all"
+      ><i class="bi bi-car-front"> Akıncı Car Rental</i></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <li class="nav-item">
+          <a class="nav-link" routerLink="/customer/cars/add"> <i>Araba Ekle</i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/customer/brands/add"><i>Marka Ekle</i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/customer/colors/add"><i>Renk Ekle</i></a>
+        </li> -->
+        <app-cart-summary></app-cart-summary>
+      </ul>
+      <!-- <form class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-warning" >
+          getbymail
+        </button>
+      </form> -->
+      <div *ngIf="!isAuthenticated">
+        <app-login></app-login>
+        <app-register></app-register>
+      </div>
+      <li *ngIf="isAuthenticated" class="nav-item dropdown d-flex">
+        <a
+          class="nav-link dropdown-toggle text-white btn"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-person-circle"> Hesabım </i>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item" routerLink="/customer/editProfile">
+            <i class="bi bi-pencil-square" ></i> Bilgilerini Güncelle
+          </li>
+          <li class="dropdown-item" routerLink="/customer/creditCard">
+            <i class="bi bi-credit-card"></i> Kart İşlemleri
+          </li>
+          <li class="dropdown-item">
+            <i class="bi bi-shield-lock"></i> Güvenlik
+          </li>
+          <li class="dropdown-item" (click)="logout()">
+            <i class="bi bi-door-closed"></i> Çıkış Yap 
+          </li>
+        </ul>
+      </li>
+    </div>
+  </div>
+</nav>

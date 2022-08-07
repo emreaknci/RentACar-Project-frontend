@@ -1,0 +1,64 @@
+<button
+  class="btn btn-success p-2 m-3"
+  data-bs-toggle="modal"
+  data-bs-target="#creditCardAddPopUp"
+>
+  <i class="bi bi-plus"></i> Yeni Kart Ekle
+</button>
+
+<!-- New Credit Card Popup -->
+<div
+  class="modal fade"
+  id="creditCardAddPopUp"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Yeni Kredi Kartı</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+          <form class="border-0" [formGroup]="creditCardAddForm">
+            <div class="my-5">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="cardNumber"
+                placeholder="Kart Numarası"
+              />
+            </div>
+            <div class="my-5">
+              <div class="row">
+                <div class="col-6">
+                  <input
+                    type="month"
+                    class="form-control"
+                    formControlName="expirationDate"
+                  />
+                </div>
+                <div class="col-4 ms-auto">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="CVV"
+                    formControlName="cvv"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-success w-100 " (click)="addCreditCard()">Kartı Ekle</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>

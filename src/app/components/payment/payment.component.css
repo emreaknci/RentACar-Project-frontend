@@ -9,13 +9,11 @@ body {
     sans-serif;
 }
 .container {
-  background-color: #f3f3f3;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f3f3f3;
 }
 .card-container {
   box-shadow: 2px 2px 7px 2px #737373;

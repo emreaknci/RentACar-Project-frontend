@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="col-lg-8 offset-lg-2 col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Bilgilerini Düzenle</h5></div>
+      <div class="card-body">
+        <form [formGroup]="customerEditForm">
+          <div class="form-group row py-2">
+              <label for="name" class="col-sm-2 col-form-label">Kullanıcı Id</label>
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  id="id"
+                  formControlName="id"
+                  class="form-control"
+                  placeholder="Marka Id"
+                />
+              </div>
+            </div>
+          <div class="form-group row py-2">
+            <label for="firstName" class="col-sm-2 col-form-label">
+              Ad
+            </label >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-control"
+                required="Bu alan boş geçilemez"
+              />
+            </div>
+          </div>
+          <div class="form-group row py-2">
+            <label for="lastName" class="col-sm-2 col-form-label">
+              Soyad
+            </label >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="form-control"
+                required="Bu alan boş geçilemez"
+              />
+            </div>
+          </div>
+          <div class="form-group row py-2">
+            <label for="email" class="col-sm-2 col-form-label">
+              Mail
+            </label >
+            <div class="col-sm-10">
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="form-control"
+                required="Bu alan boş geçilemez"
+              />
+            </div>
+          </div>
+          <div class="form-group row py-2">
+            <label for="companyName" class="col-sm-2 col-form-label">
+              Şirket Adı
+            </label >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                id="companyName"
+                formControlName="companyName"
+                class="form-control"
+                required="Bu alan boş geçilemez"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-success" type="submit" (click)="update()">
+          Düzenle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

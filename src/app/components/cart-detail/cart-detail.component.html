@@ -1,54 +1,59 @@
-<div class="basket-labels">
-  <ul>
-    <li class="item item-heading">Araç</li>
-    <li class="price">Günlük Fiyat</li>
-    <li class="subtotal">Toplam Fiyat</li>
-  </ul>
-</div>
-<div class="basket-product" *ngFor="let item of cartItems">
-  <div class="item">
-    <div class="product-image">
-      <img
-        *ngIf="item.carDetail.images[0] == null"
-        class="img-rounded w-100"
-        style="height: 200px"
-        src="{{ imagePath }}Images/default.png"
-      />
-      <img
-        *ngIf="item.carDetail.images[0] != null"
-        class="img-rounded w-100"
-        style="height: 200px"
-        src="{{ imagePath }}{{ item.carDetail.images[0] }}"
-      />
-    </div>
-    <div class="product-details">
-      <p>
-        <strong>{{ item.carDetail.carDescription }}</strong>
-      </p>
-      <p><strong>Marka:</strong> {{ item.carDetail.brandName }}</p>
-      <p><strong>Renk:</strong> {{ item.carDetail.colorName }}</p>
-      <p><strong>Kiralama Tarihi:</strong> {{ item.rentDate | date }}</p>
-      <p><strong>Dönüş Tarihi:</strong> {{ item.returnDate | date }}</p>
-      <p><strong>Toplam Süre:</strong> {{ item.leaseTerm }} Gün</p>
-    </div>
+<app-navi></app-navi>
+<div class="container">
+  <div class="basket-labels">
+    <ul>
+      <li class="item item-heading">Araç</li>
+      <li class="price">Günlük Fiyat</li>
+      <li class="subtotal">Toplam Fiyat</li>
+    </ul>
   </div>
-  <div class="price">{{ item.carDetail.dailyPrice }}</div>
-  <div class="subtotal">{{ item.leaseCost }}</div>
-  <div class="remove">
-    <a class="btn btn-danger" (click)="removeFromCart(item.carDetail.id)">Sil</a>
-  </div>
-</div>
-<aside>
-  <div class="summary">
-    <div class="summary-total-items">{{ cartItems.length }} Araç Seçildi</div>
-    <div class="summary-total">
-      <div class="total-title">Toplam</div>
-      <div class="total-value final-value" id="basket-total">
-        {{ totalprice }}
+  <div class="basket-product" *ngFor="let item of cartItems">
+    <div class="item">
+      <div class="product-image">
+        <img
+          *ngIf="item.carDetail.images[0] == null"
+          class="img-rounded w-100"
+          style="height: 200px"
+          src="{{ imagePath }}Images/default.png"
+        />
+        <img
+          *ngIf="item.carDetail.images[0] != null"
+          class="img-rounded w-100"
+          style="height: 200px"
+          src="{{ imagePath }}{{ item.carDetail.images[0] }}"
+        />
+      </div>
+      <div class="product-details">
+        <p>
+          <strong>{{ item.carDetail.carDescription }}</strong>
+        </p>
+        <p><strong>Marka:</strong> {{ item.carDetail.brandName }}</p>
+        <p><strong>Renk:</strong> {{ item.carDetail.colorName }}</p>
+        <p><strong>Kiralama Tarihi:</strong> {{ item.rentDate | date }}</p>
+        <p><strong>Dönüş Tarihi:</strong> {{ item.returnDate | date }}</p>
+        <p><strong>Toplam Süre:</strong> {{ item.leaseTerm }} Gün</p>
       </div>
     </div>
-    <div class="summary-checkout">
-      <button class="checkout-cta" routerLink="/payment" >Ödemeye Geç</button>
+    <div class="price">{{ item.carDetail.dailyPrice }}</div>
+    <div class="subtotal">{{ item.leaseCost }} ({{ item.leaseTerm }} Gün)</div>
+    <div class="remove">
+      <a class="btn btn-danger" (click)="removeFromCart(item.carDetail.id)"
+        >Sil</a
+      >
     </div>
   </div>
-</aside>
+  <aside>
+    <div class="summary my-5" *ngIf="totalprice !== 0">
+      <div class="summary-total-items">{{ cartItems.length }} Araç Seçildi</div>
+      <div class="summary-total">
+        <div class="total-title">Toplam</div>
+        <div class="total-value final-value" id="basket-total">
+          {{ totalprice }}
+        </div>
+      </div>
+      <div class="summary-checkout">
+        <button class="checkout-cta" routerLink="/payment">Ödemeye Geç</button>
+      </div>
+    </div>
+  </aside>
+</div>

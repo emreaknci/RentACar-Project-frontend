@@ -1,0 +1,91 @@
+<button
+  type="button"
+  class="btn btn-outline-warning mx-1"
+  data-bs-toggle="modal"
+  data-bs-target="#registerPopup"
+>
+  <i>Kayıt Ol</i>
+</button>
+
+<!-- Register Popup -->
+<div
+  class="modal fade"
+  id="registerPopup"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Kayıt Ol</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <main class="form-signin w-100 m-auto">
+          <form [formGroup]="registerForm">
+            <div class="form-floating my-3">
+              <input
+                type="text"
+                formControlName="firstName"
+                class="form-control"
+                id="firstNameInput"
+              />
+              <label for="firstNameInput">Ad</label>
+            </div>
+
+            <div class="form-floating my-3">
+              <input
+                type="text"
+                formControlName="lastName"
+                class="form-control"
+                id="lastNameInput"
+              />
+              <label for="lastNameInput">Soyad</label>
+            </div>
+            <div class="form-floating my-3">
+              <input
+                type="text"
+                formControlName="companyName"
+                class="form-control"
+                id="floatingInput"
+              />
+              <label for="floatingInput">Şirket Adı</label>
+            </div>
+            <div class="form-floating my-3">
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+              />
+              <label for="floatingInput">Mail</label>
+            </div>
+            <div class="form-floating my-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                formControlName="password"
+              />
+              <label for="floatingPassword">Şifre</label>
+            </div>
+
+            <div class="checkbox my-3">
+              <label>
+                <input type="checkbox" value="remember-me" /> Beni Hatırla
+              </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-success" (click)="registerForCustomer()">
+              Kayıt ol
+            </button>
+          </form>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>

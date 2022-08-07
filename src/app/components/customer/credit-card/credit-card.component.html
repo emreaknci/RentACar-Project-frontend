@@ -1,0 +1,39 @@
+<div class="container bg-primary col-md-8 offset-md-2">
+
+  <div *ngFor="let item of creditCards">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-danger  m-3 mx-auto" (click)="deleteCreditCard(item)">
+        <i class="bi bi-x "></i> Kartı Sil
+      </button>
+    </div>
+    <div class="card d-flex mx-auto border-0">
+      
+      <div class="card__front card__part bg-danger">
+        <i class="bi bi-bank h3"></i>
+        <img
+          class="card__front-logo card__logo"
+          src="https://cdn.freebiesupply.com/logos/large/2x/mastercard-4-logo-png-transparent.png"
+        />
+        <p class="card_numer">{{ item.cardNumber }}</p>
+        <div class="card__space-25">
+          <span class="card__label">Expires</span>
+          <p class="card__info">{{ item.expirationDate }}</p>
+        </div>
+      </div>
+
+      <div class="card__back card__part bg-danger">
+        <div class="card__black-line"></div>
+        <div class="card__back-content">
+          <div class="card__secret">
+            <p class="card__secret--last">{{ item.cvv }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-credit-card-add></app-credit-card-add>
+
+</div>
+
+
+
